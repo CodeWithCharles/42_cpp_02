@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cpoulain <cpoulain@student.42lehavre.fr>   +#+  +:+       +#+         #
+#    By: cpoulain <cpoulain@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/06 01:51:31 by cpoulain          #+#    #+#              #
-#    Updated: 2025/02/10 13:03:36 by cpoulain         ###   ########.fr        #
+#    Updated: 2025/03/27 11:41:17 by cpoulain         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ OBJS		=	$(addprefix $(OBJ_DIR)/, $(addsuffix .o, $(FILES)))
 
 # Targets
 
-TARGET		:=	$(BIN_DIR)/harlerFilter
+TARGET		:=	$(BIN_DIR)/fixed
 
 # Phony rules
 
