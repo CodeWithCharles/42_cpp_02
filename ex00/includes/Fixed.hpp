@@ -6,7 +6,7 @@
 /*   By: cpoulain <cpoulain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 14:49:52 by cpoulain          #+#    #+#             */
-/*   Updated: 2025/03/27 11:41:44 by cpoulain         ###   ########.fr       */
+/*   Updated: 2025/03/27 13:14:37 by cpoulain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,14 @@
 
 #include <iostream>
 
+#define _FRACT_BITS	8;
+
 class Fixed
 {
 	private:
 	// Private attributes
-		int					_fixed_point_value;
-		static const int	_fract_bits;
+		int					_raw_bits;
+		static const int	_fract_bits = _FRACT_BITS;
 
 	public:
 

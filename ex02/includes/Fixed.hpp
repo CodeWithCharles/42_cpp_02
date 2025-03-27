@@ -38,6 +38,30 @@ class Fixed
 	// Assignement operators overload
 		Fixed	&operator=(const Fixed &org);
 
+	// Operator overload
+		// Mathematical operators
+		Fixed	operator+(Fixed const &fixed) const;
+		Fixed	operator-(Fixed const &fixed) const;
+		Fixed	operator*(Fixed const &fixed) const;
+		Fixed	operator/(Fixed const &fixed) const;
+		// Assignation operators
+		Fixed	&operator++(void);
+		Fixed	operator++(int);
+		Fixed	&operator--(void);
+		Fixed	operator--(int);
+		// Comparison operators
+		bool	operator>(Fixed const &fixed) const;
+		bool	operator<(Fixed const &fixed) const;
+		bool	operator>=(Fixed const &fixed) const;
+		bool	operator<=(Fixed const &fixed) const;
+		bool	operator==(Fixed const &fixed) const;
+		bool	operator!=(Fixed const &fixed) const;
+		// Static functions
+		static Fixed		&min(Fixed &a, Fixed &b);
+		static const Fixed	&min(const Fixed &a, const Fixed &b);
+		static Fixed		&max(Fixed &a, Fixed &b);
+		static const Fixed	&max(const Fixed &a, const Fixed &b);
+
 	// Public functions
 		float toFloat(void) const;
 		int toInt(void) const;

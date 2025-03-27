@@ -6,18 +6,15 @@
 /*   By: cpoulain <cpoulain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 11:41:52 by cpoulain          #+#    #+#             */
-/*   Updated: 2025/03/27 11:51:13 by cpoulain         ###   ########.fr       */
+/*   Updated: 2025/03/27 13:14:37 by cpoulain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Fixed.hpp"
 
-// Defining _fract_bits as it is a const
-const int	Fixed::_fract_bits = 8;
-
 // Constructors
 
-Fixed::Fixed(): _fixed_point_value(0)
+Fixed::Fixed(): _raw_bits(0)
 {
 	std::cout << "Default constructor called" << std::endl;
 }
@@ -40,7 +37,7 @@ Fixed::~Fixed()
 Fixed &Fixed::operator=(const Fixed &src)
 {
 	std::cout << "Copy assignement operator called" << std::endl;
-	this->_fixed_point_value = src.getRawBits();
+	this->_raw_bits = src.getRawBits();
 	return (*this);
 }
 
@@ -49,7 +46,7 @@ Fixed &Fixed::operator=(const Fixed &src)
 int	Fixed::getRawBits(void) const
 {
 	std::cout << "getRawBits member function called" << std::endl;
-	return (this->_fixed_point_value);
+	return (this->_raw_bits);
 }
 
 // Methods
@@ -57,5 +54,5 @@ int	Fixed::getRawBits(void) const
 void	Fixed::setRawBits(int const fp_value)
 {
 	std::cout << "setRawBits member function called" << std::endl;
-	this->_fixed_point_value = fp_value;
+	this->_raw_bits = fp_value;
 }

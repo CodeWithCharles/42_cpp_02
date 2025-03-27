@@ -6,7 +6,7 @@
 /*   By: cpoulain <cpoulain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 11:41:52 by cpoulain          #+#    #+#             */
-/*   Updated: 2025/03/27 13:14:37 by cpoulain         ###   ########.fr       */
+/*   Updated: 2025/03/27 13:25:00 by cpoulain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,139 @@ std::ostream	&operator<<(std::ostream &stream, Fixed const &fixed)
 {
 	stream << fixed.toFloat();
 	return (stream);
+}
+
+//		Mathematical operators
+
+Fixed	Fixed::operator+(Fixed const &fixed) const
+{
+	Fixed	res;
+
+	res._raw_bits = this->_raw_bits + fixed._raw_bits;
+	return (res);
+}
+
+Fixed	Fixed::operator-(Fixed const &fixed) const
+{
+	Fixed	res;
+
+	res._raw_bits = this->_raw_bits - fixed._raw_bits;
+	return (res);
+}
+
+Fixed	Fixed::operator*(Fixed const &fixed) const
+{
+	Fixed	res;
+
+	res._raw_bits = (long(this->_raw_bits)
+		<< long(fixed._raw_bits) / Fixed::_fract_bits);
+	return (res);
+}
+
+
+Fixed	Fixed::operator/(Fixed const &fixed) const
+{
+	Fixed	res;
+
+	res._raw_bits = (long(this->_raw_bits)
+		<< long(Fixed::_fract_bits) / fixed._raw_bits);
+	return (res);
+}
+
+//		Assignation operators
+
+//			Incremental
+
+Fixed	&Fixed::operator++(void)
+{
+	this->_raw_bits++;
+	return (*this);
+}
+
+Fixed	Fixed::operator++(int)
+{
+	Fixed	res(*this);
+
+	this->_raw_bits++;
+	return (*this);
+}
+
+//			Decremental
+
+Fixed	&Fixed::operator--(void)
+{
+	this->_raw_bits--;
+	return (*this);
+}
+
+Fixed	Fixed::operator--(int)
+{
+	Fixed	res(*this);
+
+	this->_raw_bits--;
+	return (*this);
+}
+
+//		Comparison operators
+
+bool	Fixed::operator>(Fixed const &fixed) const
+{
+	return (this->_raw_bits > fixed._raw_bits);
+}
+
+bool	Fixed::operator<(Fixed const &fixed) const
+{
+	return (this->_raw_bits < fixed._raw_bits);
+}
+
+bool	Fixed::operator>=(Fixed const &fixed) const
+{
+	return (this->_raw_bits >= fixed._raw_bits);
+}
+
+bool	Fixed::operator<=(Fixed const &fixed) const
+{
+	return (this->_raw_bits <= fixed._raw_bits);
+}
+
+bool	Fixed::operator==(Fixed const &fixed) const
+{
+	return (this->_raw_bits == fixed._raw_bits);
+}
+
+bool	Fixed::operator!=(Fixed const &fixed) const
+{
+	return (this->_raw_bits != fixed._raw_bits);
+}
+
+//		Static comparison functions
+
+Fixed	&Fixed::min(Fixed &a, Fixed &b)
+{
+	if (a < b)
+		return (a);
+	return (b);
+}
+
+const Fixed	&Fixed::min(const Fixed &a, const Fixed &b)
+{
+	if (a < b)
+		return (a);
+	return (b);
+}
+
+Fixed	&Fixed::max(Fixed &a, Fixed &b)
+{
+	if (a > b)
+		return (a);
+	return (b);
+}
+
+const Fixed	&Fixed::max(const Fixed &a, const Fixed &b)
+{
+	if (a > b)
+		return (a);
+	return (b);
 }
 
 // Getters
