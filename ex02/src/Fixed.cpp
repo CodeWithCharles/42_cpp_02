@@ -6,7 +6,7 @@
 /*   By: cpoulain <cpoulain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 11:41:52 by cpoulain          #+#    #+#             */
-/*   Updated: 2025/03/27 13:25:00 by cpoulain         ###   ########.fr       */
+/*   Updated: 2025/03/31 11:16:19 by cpoulain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,35 +14,26 @@
 
 // Constructors
 
-Fixed::Fixed(): _raw_bits(0)
-{
-	std::cout << "Default constructor called" << std::endl;
-}
+Fixed::Fixed(): _raw_bits(0) { }
 
 Fixed::Fixed(const int input)
 {
-	std::cout << "Int constructor called" << std::endl;
 	this->_raw_bits = input << Fixed::_raw_bits;
 }
 
 Fixed::Fixed(const float input)
 {
-	std::cout << "Float constructor called" << std::endl;
 	this->_raw_bits = roundf(input * float(1 << Fixed::_fract_bits));
 }
 
 Fixed::Fixed(const Fixed &copy)
 {
-	std::cout << "Copy constructor called" << std::endl;
 	*this = copy;
 }
 
 // Destructors
 
-Fixed::~Fixed()
-{
-	std::cout << "Destructor called" << std::endl;
-}
+Fixed::~Fixed() { }
 
 // Operator overload
 
@@ -82,7 +73,7 @@ Fixed	Fixed::operator*(Fixed const &fixed) const
 	Fixed	res;
 
 	res._raw_bits = (long(this->_raw_bits)
-		<< long(fixed._raw_bits) / Fixed::_fract_bits);
+		* long(fixed._raw_bits)) >> Fixed::_fract_bits;
 	return (res);
 }
 
@@ -92,7 +83,7 @@ Fixed	Fixed::operator/(Fixed const &fixed) const
 	Fixed	res;
 
 	res._raw_bits = (long(this->_raw_bits)
-		<< long(Fixed::_fract_bits) / fixed._raw_bits);
+		<< long(Fixed::_fract_bits)) / fixed._raw_bits;
 	return (res);
 }
 
@@ -196,7 +187,6 @@ const Fixed	&Fixed::max(const Fixed &a, const Fixed &b)
 
 int	Fixed::getRawBits(void) const
 {
-	std::cout << "getRawBits member function called" << std::endl;
 	return (this->_raw_bits);
 }
 
@@ -204,7 +194,6 @@ int	Fixed::getRawBits(void) const
 
 void	Fixed::setRawBits(int const fp_value)
 {
-	std::cout << "setRawBits member function called" << std::endl;
 	this->_raw_bits = fp_value;
 }
 
